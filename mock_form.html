@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Felig Job Application</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'pacifico', 'cursive';
+      background: linear-gradient(to right, #e0eafc, #cfdef3);
+    }
+
+    h2 {
+      text-align: center;
+      padding-top: 30px;
+      color: #333;
+    }
+
+    #successMessage {
+      display: none;
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="file"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      height: 100px;
+      resize: vertical;
+    }
+
+    input[type="submit"] {
+      background-color: #007BFF;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      margin-top: 40px;
+      background-color: #f0f0f0;
+      padding: 30px 0;
+      text-align: center;
+    }
+
+    .job-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 20px;
+    }
+
+    .job-logos img {
+      height: 40px;
+      filter: grayscale(30%);
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .job-logos img:hover {
+      transform: scale(1.1);
+      filter: grayscale(0%);
+    }
+
+    @media (max-width: 600px) {
+      .job-logos img {
+        height: 30px;
+        margin: 10px;
+      }
+
+      form {
+        margin: 10px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Felig Job Application Portal</h2>
+
+  <div id="successMessage"></div>
+
+  <form id="jobAppForm">
+    <label>First Name:</label>
+    <input type="text" name="firstname" required>
+
+    <label>Last Name:</label>
+    <input type="text" name="lastname" required>
+
+    <label>Email:</label>
+    <input type="email" name="email" required>
+
+    <label>Resume Upload (PDF, DOCX):</label>
+    <input type="file" name="resume" id="resumeUpload" accept=".pdf,.doc,.docx" required>
+
+    <label>Cover Letter (Typed):</label>
+    <textarea name="message" placeholder="Write your cover letter here..."></textarea>
+
+    <label>Or Upload Cover Letter (PDF, DOCX):</label>
+    <input type="file" name="coverLetterUpload" id="coverLetterUpload" accept=".pdf,.doc,.docx">
+
+    <input type="submit" value="Submit Application">
+  </form>
+
+  <footer>
+    <h3 style="text-align: center; color: #444; font-weight: normal; margin-bottom: 10px;">
+      We are connected with:
+    </h3>
+    <div class="job-logos">
+      <a href="https://www.linkedin.com" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" title="LinkedIn">
+      </a>
+      <a href="https://www.indeed.com" target="_blank">
+        <img src="https://logowik.com/content/uploads/images/indeed-new20211012020732.png" alt="Indeed" title="Indeed">
+      </a>
+      <a href="https://www.glassdoor.com" target="_blank">
+        <img src="https://logowik.com/content/uploads/images/glassdoor6600.jpg" alt="Glassdoor" title="Glassdoor">
+      </a>
+      <a href="https://www.monster.com" target="_blank">
+        <img src="https://logowik.com/content/uploads/images/monster-com9546.logowik.com.webp" alt="Monster" title="Monster">
+      </a>
+      <a href="https://www.ziprecruiter.com" target="_blank">
+        <img src="https://logowik.com/content/uploads/images/ziprecruiter6841.jpg" alt="ZipRecruiter" title="ZipRecruiter">
+      </a>
+      <a href="https://www.careerbuilder.com" target="_blank">
+        <img src="https://logowik.com/content/uploads/images/careerbuilder5647.logowik.com.webp" alt="CareerBuilder" title="CareerBuilder">
+      </a>
+      <a href="https://www.simplyhired.com" target="_blank">
+        <img src="https://logowik.com/content/uploads/images/simplyhired5820.logowik.com.webp" alt="SimplyHired" title="SimplyHired">
+      </a>
+      <a href="https://www.snagajob.com" target="_blank">
+        <img src="https://logowik.com/content/uploads/images/snagajob6643.jpg" alt="Snagajob" title="Snagajob">
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('jobAppForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const firstName = document.querySelector('[name="firstname"]').value;
+      const lastName = document.querySelector('[name="lastname"]').value;
+      const email = document.querySelector('[name="email"]').value;
+      const coverLetterFile = document.getElementById('coverLetterUpload').files[0];
+
+      const successDiv = document.getElementById('successMessage');
+      successDiv.innerHTML = `✅ Thank you, <strong>${firstName} ${lastName}</strong>! Your application has been submitted.<br>Email: <em>${email}</em>`;
+
+      if (coverLetterFile) {
+        successDiv.innerHTML += `<br>Cover Letter File: <em>${coverLetterFile.name}</em>`;
+      }
+
+      successDiv.style.display = 'block';
+      successDiv.scrollIntoView({ behavior: "smooth" });
+
+      this.reset();
+    });
+  </script>
+
+</body>
+</html>
